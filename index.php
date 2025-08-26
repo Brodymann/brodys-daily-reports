@@ -10,7 +10,7 @@
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
-    <p>Fill out the daily progress report below. Student is preset to <strong>Brody Baumann</strong>.</p>
+    <p>Please fill out the daily progress report below.</p>
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
