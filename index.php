@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title><?=h(APP_NAME)?> – Submit Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/style.css?v=<?=time()?>">
+  <link rel="stylesheet" href="assets/css/style.css?v=<?=time()?>" />
   <style>
     /* Centered date field */
     .date-row {
@@ -20,16 +20,28 @@
     .date-row input[type="date"] {
       font-size: 1.2rem;
       padding: 6px 10px;
-      width: 160px;
+      width: 160px; /* shorter box */
       text-align: center;
     }
+    /* Prevent margin-collapsing inside colored containers */
     .container { overflow: hidden; }
+
+    /* Brody + Kyle photo */
+    .brody-photo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
+
+    <!-- Photo of Brody + Kyle -->
+    <img src="assets/images/Brody_Kyle.jpg" alt="Brody and Kyle" class="brody-photo">
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
