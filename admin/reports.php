@@ -48,25 +48,14 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
 </div>
 
 <table>
-  <thead>
-  <tr>
-    <th>Date</th>
-    <th>Comm</th>
-    <th>Social</th>
-    <th>Academic</th>
-    <th>Adaptive</th>
-    <th>Specialists</th>
-    <th>Bathroom</th>
-    <th>Notes (preview)</th>
-    <th></th>
-  </tr>
-</thead>
+  <thead><tr>
+    <th>Date</th><th>Student</th><th>Specialists</th><th>Bathroom</th><th>Notes (preview)</th><th></th>
+  </tr></thead>
   <tbody>
     <?php foreach($rows as $r): ?>
       <tr>
         <td><?=h($r['report_date'])?></td>
-        
-        <?=date('d-m-y', strtotime($r['report_date']))?></td>
+        <td><?=h($r['student_name'])?></td>
         <td><?php foreach(json_decode($r['specialists'] ?? '[]', true) ?: [] as $s) echo '<span class="badge">'.h($s).'</span>'; ?></td>
         <td><?php foreach(json_decode($r['bathroom'] ?? '[]', true) ?: [] as $b) echo '<span class="badge">'.h($b).'</span>'; ?></td>
         <td><?=h(mb_strimwidth($r['notes'] ?? '', 0, 80, '…'))?></td>
