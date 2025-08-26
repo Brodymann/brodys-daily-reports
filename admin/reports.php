@@ -120,7 +120,8 @@ $pages = max(1, (int)ceil($count / $per));
       </div>
     </div>
 
-    <table>
+  <div class="table-wrap">
+  <table>
       <thead>
         <tr>
           <th>Date</th>
@@ -175,7 +176,7 @@ $pages = max(1, (int)ceil($count / $per));
       <?php endif; ?>
       </tbody>
     </table>
-
+  </div>
     <div class="pager">
       Page:
       <?php for ($i=1; $i <= $pages; $i++): ?>

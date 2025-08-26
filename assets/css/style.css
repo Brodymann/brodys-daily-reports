@@ -230,4 +230,55 @@ fieldset,
   color: #ffffff;                      /* text turns white */
 }
 
+/* ===== Mobile polish ===== */
+@media (max-width: 640px) {
+  /* Background pattern smaller */
+  body { background-size: 200px auto; }
+
+  /* Containers fill screen nicely */
+  .container {
+    max-width: 95%;
+    width: 95%;
+    margin: 12px auto;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.12);
+  }
+
+  /* Tighten label spacing so sections don't look broken */
+  label { margin-top: 10px; }
+
+  /* Textareas: comfortable tap targets but not too tall */
+  textarea { padding: 10px; }
+
+  /* Date row: keep it centered and compact on phones */
+  .date-row { margin: 12px 0; }
+  .date-row label { font-size: 1rem; }
+  .date-row input[type="date"] {
+    width: 140px;
+    font-size: 1.1rem;
+    padding: 6px 10px;
+  }
+
+  /* Bathroom inputs: keep them big but not overflowing */
+  .group.compact { gap: 12px; }
+  .metric { align-items: flex-start; }
+  .bathroom-field {
+    width: 64px;           /* slightly narrower on phones */
+    font-size: 1.1rem;
+    padding: 8px;
+  }
+}
+
+/* Admin: make tables scroll horizontally on small screens */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table {
+  min-width: 760px; /* prevents columns from smashing; scroll instead */
+}
+
+/* Prevent margin-collapsing inside colored containers */
+.container { overflow: hidden; }
 
