@@ -35,6 +35,14 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
 .badge{display:inline-block;padding:2px 6px;border:1px solid #ddd;border-radius:12px;margin-right:4px;font-size:12px}
 .pager a{margin:0 4px}
 .topbar{display:flex;justify-content:space-between;align-items:center}
+.indicator-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;   /* green */
+  vertical-align: middle;
+}
 </style></head><body>
 <div class="topbar">
   <h2>Reports (<?=$count?>)</h2>
@@ -52,20 +60,39 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
     <th>Date</th><th>Communication</th><th>Social</th><th>Academic</th><th>Adaptive</th><th>Specialists</th><th>Bathroom</th><th>Notes</th><th>Send</th>
   </tr></thead>
   <tbody>
-    <?php foreach($rows as $r): ?>
-      <tr>
-        <td><?=h($r['report_date'])?></td>
-        <td><?=h($r['communication'])?></td>
-        <td><?=h($r['social'])?></td>
-        <td><?=h($r['academic'])?></td>
-        <td><?=h($r['adaptive'])?></td>
-        <td><?php foreach(json_decode($r['specialists'] ?? '[]', true) ?: [] as $s) echo '<span class="badge">'.h($s).'</span>'; ?></td>
-        <td><?php foreach(json_decode($r['bathroom'] ?? '[]', true) ?: [] as $b) echo '<span class="badge">'.h($b).'</span>'; ?></td>
-        <td><?=h(mb_strimwidth($r['notes'] ?? '', 0, 80, '…'))?></td>
-        <td><?=h($r['send_in'])?></td>
-        <td><a href="/admin/view.php?id=<?=$r['id']?>">View</a></td>
-      </tr>
-    <?php endforeach; ?>
+<?php foreach ($rows as $r): ?>
+  <tr>
+    <td><?=date('d-m-y', strtotime($r['report_date']))?></td>
+
+    <td><?= trim((string)$r['communication']) !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
+    <td><?= trim((string)$r['social'])        !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
+    <td><?= trim((string)$r['academic'])      !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
+    <td><?= trim((string)$r['adaptive'])      !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
+
+    <td>
+      <?php if (!empty($r['specialists'])):
+        $spec = json_decode($r['specialists'], true) ?: [];
+        foreach ($spec as $s) echo '<span class="pill">'.h($s).'</span> ';
+      endif; ?>
+    </td>
+
+    <td>
+      <?php if (!empty($r['bathroom'])):
+        $bm = json_decode($r['bathroom'], true) ?: [];
+        echo (int)($bm['changed'] ?? 0).' / ';
+        echo (int)($bm['wet'] ?? 0).' / ';
+        echo (int)($bm['bm'] ?? 0).' / ';
+        echo (int)($bm['sat_on_toilet'] ?? 0).' / ';
+        echo (int)($bm['went_on_toilet'] ?? 0);
+      endif; ?>
+    </td>
+
+    <td><?= trim((string)$r['notes'])   !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
+    <td><?= trim((string)$r['send_in']) !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
+
+    <td><a href="view.php?id=<?=$r['id']?>">View</a></td>
+  </tr>
+<?php endforeach; ?>
     <?php if(!$rows): ?><tr><td colspan="6">No reports.</td></tr><?php endif;?>
   </tbody>
 </table>
