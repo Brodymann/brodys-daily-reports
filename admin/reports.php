@@ -48,23 +48,40 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
 </div>
 
 <table>
-  <thead><tr>
-    <th>Date</th><th>Student</th><th>Specialists</th><th>Bathroom</th><th>Notes (preview)</th><th></th>
-  </tr></thead>
-  <tbody>
-    <?php foreach($rows as $r): ?>
-      <tr>
-        <td><?=h($r['report_date'])?></td>
-        <td><?=h($r['student_name'])?> · 
-        <?=date('m-d-y', strtotime($r['report_date']))?></td>
-        <td><?php foreach(json_decode($r['specialists'] ?? '[]', true) ?: [] as $s) echo '<span class="badge">'.h($s).'</span>'; ?></td>
-        <td><?php foreach(json_decode($r['bathroom'] ?? '[]', true) ?: [] as $b) echo '<span class="badge">'.h($b).'</span>'; ?></td>
-        <td><?=h(mb_strimwidth($r['notes'] ?? '', 0, 80, '…'))?></td>
-        <td><a href="/admin/view.php?id=<?=$r['id']?>">View</a></td>
-      </tr>
-    <?php endforeach; ?>
-    <?php if(!$rows): ?><tr><td colspan="6">No reports.</td></tr><?php endif;?>
-  </tbody>
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Specialists</th>
+    <th>Bathroom</th>
+    <th>Notes (preview)</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+<?php foreach ($rows as $r): ?>
+  <tr>
+    <td><?=date('d-m-y', strtotime($r['report_date']))?></td>
+    <td>
+      <?php if (!empty($r['specialists'])):
+        $spec = json_decode($r['specialists'], true) ?: [];
+        foreach ($spec as $s) echo '<span class="pill">'.h($s).'</span> ';
+      endif; ?>
+    </td>
+    <td>
+      <?php if (!empty($r['bathroom'])):
+        $bm = json_decode($r['bathroom'], true) ?: [];
+        echo (int)($bm['changed'] ?? 0).' / ';
+        echo (int)($bm['wet'] ?? 0).' / ';
+        echo (int)($bm['bm'] ?? 0).' / ';
+        echo (int)($bm['sat_on_toilet'] ?? 0).' / ';
+        echo (int)($bm['went_on_toilet'] ?? 0);
+      endif; ?>
+    </td>
+    <td><?=h(mb_strimwidth($r['notes'], 0, 30, '…'))?></td>
+    <td><a href="view.php?id=<?=$r['id']?>">View</a></td>
+  </tr>
+<?php endforeach; ?>
+</tbody>
 </table>
 
 <div class="pager">
