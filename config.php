@@ -4,12 +4,12 @@ declare(strict_types=1);
 session_start();
 
 // TODO: fill with your DreamHost credentials
-const DB_HOST = 'mysql-1.kylebaumann.com';   // e.g., mysql-1.kylebaumann.com
+const DB_HOST = 'mysql-1.kylebaumann.com';
 const DB_NAME = 'brody_reports';
 const DB_USER = 'brody_user';
 const DB_PASS = 'B0dy!m00vin81';
 
-const APP_NAME = "Brody's Daily Progress Reports";
+const APP_NAME = "BRODY'S DAILY PROGRESS REPORT";
 const ADMIN_EMAIL_FROM = 'admin@brodys.site'; // optional
 
 function db(): PDO {

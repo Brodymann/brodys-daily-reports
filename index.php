@@ -10,7 +10,7 @@
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
-    <p>Please fill out the daily progress report below.</p>
+    
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
