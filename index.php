@@ -71,7 +71,7 @@
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
-    <p>Fill out the daily progress report below. Student is preset to <strong>Brody Baumann</strong>.</p>
+    <p>Please fill out the daily progress report below.</p>
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
@@ -118,5 +118,15 @@
       <button type="submit">Submit Report</button>
     </form>
   </div>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const dateInput = document.querySelector('input[name="report_date"]');
+    if (dateInput && !dateInput.value) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.value = today;
+    }
+  });
+</script>
 </body>
 </html>
