@@ -229,3 +229,10 @@ fieldset,
   background: var(--container-blue);   /* invert on hover */
   color: #ffffff;                      /* text turns white */
 }
+
+.indicator {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.indicator.green { color: #22c55e; }  /* tailwind green-500 */
+.indicator.gray { color: #9ca3af; }   /* tailwind gray-400 */

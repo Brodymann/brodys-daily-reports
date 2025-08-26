@@ -51,22 +51,51 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
   <thead>
   <tr>
     <th>Date</th>
+    <th>Comm</th>
+    <th>Social</th>
+    <th>Academic</th>
+    <th>Adaptive</th>
     <th>Specialists</th>
     <th>Bathroom</th>
     <th>Notes (preview)</th>
     <th></th>
   </tr>
 </thead>
+
 <tbody>
 <?php foreach ($rows as $r): ?>
   <tr>
     <td><?=date('d-m-y', strtotime($r['report_date']))?></td>
+
+    <td>
+  <span class="indicator <?=!empty(trim($r['communication'])) ? 'green' : 'gray'?>">
+    ●
+  </span>
+</td>
+<td>
+  <span class="indicator <?=!empty(trim($r['social'])) ? 'green' : 'gray'?>">
+    ●
+  </span>
+</td>
+<td>
+  <span class="indicator <?=!empty(trim($r['academic'])) ? 'green' : 'gray'?>">
+    ●
+  </span>
+</td>
+<td>
+  <span class="indicator <?=!empty(trim($r['adaptive'])) ? 'green' : 'gray'?>">
+    ●
+  </span>
+</td>
+
+
     <td>
       <?php if (!empty($r['specialists'])):
         $spec = json_decode($r['specialists'], true) ?: [];
         foreach ($spec as $s) echo '<span class="pill">'.h($s).'</span> ';
       endif; ?>
     </td>
+
     <td>
       <?php if (!empty($r['bathroom'])):
         $bm = json_decode($r['bathroom'], true) ?: [];
@@ -77,11 +106,13 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
         echo (int)($bm['went_on_toilet'] ?? 0);
       endif; ?>
     </td>
-    <td><?=h(mb_strimwidth($r['notes'], 0, 30, '…'))?></td>
+
+    <td><?=h(mb_strimwidth((string)$r['notes'], 0, 30, '…'))?></td>
     <td><a href="view.php?id=<?=$r['id']?>">View</a></td>
   </tr>
 <?php endforeach; ?>
 </tbody>
+
 </table>
 
 <div class="pager">
