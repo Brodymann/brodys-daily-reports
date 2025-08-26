@@ -25,8 +25,8 @@
           <label>Daily Progress Report for:</label>
           <div class="readonly"><strong>Brody Baumann</strong></div>
         </div>
-        <label><strong>Date:</strong>
-          <input type="date" name="report_date" required>
+        <label>Date:
+          <strong><input type="date" name="report_date" required></strong>
         </label>
       </div>
 
