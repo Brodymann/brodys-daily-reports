@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
   body {
     margin: 0;
     font-family: system-ui, Arial, sans-serif;
-    background-image: url('../images/Educational_Icons_Pattern_1.png');
+    background-image: url('../assets/images/Educational_Icons_Pattern_1.png');
     background-repeat: repeat;
     background-size: 300px auto;
     min-height: 100vh;
@@ -44,42 +44,19 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
-  h2 {
-    margin-top: 0;
-    text-align: center;
-  }
-  label {
-    display: block;
-    margin-top: 12px;
-    font-weight: 600;
-  }
+  h2 { margin-top: 0; text-align: center; }
+  label { display: block; margin-top: 12px; font-weight: 600; }
   input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 4px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    box-sizing: border-box;
+    width: 100%; padding: 10px; margin-top: 4px;
+    border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;
   }
   button {
-    margin-top: 16px;
-    width: 100%;
-    padding: 12px;
-    background: #2563eb;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
+    margin-top: 16px; width: 100%; padding: 12px;
+    background: #2563eb; border: none; border-radius: 6px; color: #fff;
+    font-weight: 600; cursor: pointer;
   }
-  button:hover {
-    filter: brightness(0.95);
-  }
-  .err {
-    color: #b91c1c;
-    margin-top: 10px;
-    text-align: center;
-  }
+  button:hover { filter: brightness(0.95); }
+  .err { color: #b91c1c; margin-top: 10px; text-align: center; }
 </style>
 </head>
 <body>
