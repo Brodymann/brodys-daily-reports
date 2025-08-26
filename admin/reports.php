@@ -67,27 +67,11 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
   <tr>
     <td><?=date('d-m-y', strtotime($r['report_date']))?></td>
 
-    <td>
-  <span class="indicator <?=!empty(trim($r['communication'])) ? 'green' : 'gray'?>">
-    ●
-  </span>
-</td>
-<td>
-  <span class="indicator <?=!empty(trim($r['social'])) ? 'green' : 'gray'?>">
-    ●
-  </span>
-</td>
-<td>
-  <span class="indicator <?=!empty(trim($r['academic'])) ? 'green' : 'gray'?>">
-    ●
-  </span>
-</td>
-<td>
-  <span class="indicator <?=!empty(trim($r['adaptive'])) ? 'green' : 'gray'?>">
-    ●
-  </span>
-</td>
-
+    <!-- Indicators: show ✅ if not empty -->
+    <td><?=!empty(trim($r['communication'])) ? '✅' : ''?></td>
+    <td><?=!empty(trim($r['social'])) ? '✅' : ''?></td>
+    <td><?=!empty(trim($r['academic'])) ? '✅' : ''?></td>
+    <td><?=!empty(trim($r['adaptive'])) ? '✅' : ''?></td>
 
     <td>
       <?php if (!empty($r['specialists'])):
@@ -99,10 +83,10 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
     <td>
       <?php if (!empty($r['bathroom'])):
         $bm = json_decode($r['bathroom'], true) ?: [];
-        echo (int)($bm['changed'] ?? 0).' / ';
-        echo (int)($bm['wet'] ?? 0).' / ';
-        echo (int)($bm['bm'] ?? 0).' / ';
-        echo (int)($bm['sat_on_toilet'] ?? 0).' / ';
+        echo (int)($bm['changed'] ?? 0).' | ';
+        echo (int)($bm['wet'] ?? 0).' | ';
+        echo (int)($bm['bm'] ?? 0).' | ';
+        echo (int)($bm['sat_on_toilet'] ?? 0).' | ';
         echo (int)($bm['went_on_toilet'] ?? 0);
       endif; ?>
     </td>
