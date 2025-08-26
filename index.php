@@ -6,11 +6,28 @@
   <title><?=h(APP_NAME)?> – Submit Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Centered date field */
+    .date-row {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .date-row label {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    .date-row input[type="date"] {
+      font-size: 1.2rem;
+      padding: 6px 10px;
+      width: 160px; /* shorter box */
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
-    
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
@@ -20,13 +37,10 @@
       <input type="hidden" name="csrf" value="<?=csrf_token()?>">
       <input type="hidden" name="student_name" value="Brody Baumann">
 
-      <div class="two">
-        <div>
-          <label>Daily Progress Report for:</label>
-          <div class="readonly"><strong>Brody Baumann</strong></div>
-        </div>
+      <!-- Date centered -->
+      <div class="date-row">
         <label>Date:
-          <strong><input type="date" name="report_date" required></strong>
+          <input type="date" name="report_date" required>
         </label>
       </div>
 
@@ -73,28 +87,28 @@
   </div>
 
   <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Auto-fill date
-  const dateInput = document.querySelector('input[name="report_date"]');
-  if (dateInput && !dateInput.value) {
-    dateInput.value = new Date().toISOString().split('T')[0];
-  }
+  document.addEventListener("DOMContentLoaded", function() {
+    // Auto-fill date
+    const dateInput = document.querySelector('input[name="report_date"]');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
 
-  // Applause on submit
-  const form = document.querySelector("form");
-  const applause = document.getElementById("applause-sound");
-  if (form && applause) {
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();   // stop instant reload
-      applause.currentTime = 0;
-      applause.play();
+    // Applause on submit
+    const form = document.querySelector("form");
+    const applause = document.getElementById("applause-sound");
+    if (form && applause) {
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();   // stop instant reload
+        applause.currentTime = 0;
+        applause.play();
 
-      // let the applause play for ~2 seconds, then submit
-      setTimeout(() => form.submit(), 6000);
-    });
-  }
-});
-</script>
+        // let the applause play for ~2 seconds, then submit
+        setTimeout(() => form.submit(), 6000);
+      });
+    }
+  });
+  </script>
   <audio id="applause-sound" src="assets/sounds/applause.mp3" preload="auto"></audio>
 </body>
 </html>
