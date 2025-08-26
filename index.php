@@ -71,13 +71,24 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const dateInput = document.querySelector('input[name="report_date"]');
-      if (dateInput && !dateInput.value) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.value = today;
-      }
-    });
-  </script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Auto-fill date (already added)
+    const dateInput = document.querySelector('input[name="report_date"]');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
+
+    // Applause on submit
+    const form = document.querySelector("form");
+    const applause = document.getElementById("applause-sound");
+    if (form && applause) {
+      form.addEventListener("submit", function() {
+        applause.currentTime = 0;
+        applause.play();
+      });
+    }
+  });
+</script>
+  <audio id="applause-sound" src="assets/sounds/applause.mp3" preload="auto"></audio>
 </body>
 </html>
