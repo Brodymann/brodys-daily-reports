@@ -42,7 +42,7 @@ $pages = max(1, (int)ceil($count / $per));
 <title>Reports – Admin</title>
 <link rel="stylesheet" href="../assets/css/style.css?v=<?=time()?>">
 <style>
-  /* Extra overrides just for reports.php */
+  /* Page background */
   body {
     margin: 0;
     padding: 0;
@@ -53,16 +53,18 @@ $pages = max(1, (int)ceil($count / $per));
     background-color: #ffffff;
   }
 
-  .container {
+  /* Override container just for admin pages */
+  body.admin .container {
     max-width: 1100px;
     margin: 24px auto;
     padding: 16px;
-    background: #fff;
+    background: #fff !important;
+    color: #000 !important;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
 
-  /* table-specific rules */
+  /* table + pills */
   table { width: 100%; border-collapse: collapse; margin-top: 12px; }
   th, td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; vertical-align: top; }
   th { font-weight: 700; }
@@ -96,8 +98,7 @@ $pages = max(1, (int)ceil($count / $per));
   }
 </style>
 </head>
-
-<body>
+<body class="admin">
   <div class="container">
     <div class="topbar">
       <h2>Reports (<?= $count ?>)</h2>
