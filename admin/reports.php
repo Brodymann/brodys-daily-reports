@@ -46,7 +46,7 @@ $pages = max(1, (int)ceil($count / $per));
     margin: 0;
     padding: 0;
     font-family: system-ui, Arial, sans-serif;
-    background-image: url('../images/Educational_Icons_Pattern_1.png');
+    background-image: url('../assets/images/Educational_Icons_Pattern_1.png');
     background-repeat: repeat;
     background-size: 300px auto;
     background-color: #ffffff;
@@ -120,7 +120,8 @@ $pages = max(1, (int)ceil($count / $per));
       </div>
     </div>
 
-    <table>
+    <div class="table-wrap">
+  <table>
       <thead>
         <tr>
           <th>Date</th>
@@ -138,16 +139,13 @@ $pages = max(1, (int)ceil($count / $per));
       <tbody>
       <?php foreach ($rows as $r): ?>
         <tr>
-          <!-- Date (DD-MM-YY) -->
           <td><?= date('d-m-y', strtotime($r['report_date'])) ?></td>
 
-          <!-- Indicators: dot only if there is text (blank cell if none) -->
           <td><?= trim((string)$r['communication']) !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
           <td><?= trim((string)$r['social'])        !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
           <td><?= trim((string)$r['academic'])      !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
           <td><?= trim((string)$r['adaptive'])      !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
 
-          <!-- Specialists -->
           <td>
             <?php if (!empty($r['specialists'])):
               $spec = json_decode($r['specialists'], true) ?: [];
@@ -155,7 +153,6 @@ $pages = max(1, (int)ceil($count / $per));
             endif; ?>
           </td>
 
-          <!-- Bathroom numbers -->
           <td>
             <?php if (!empty($r['bathroom'])):
               $bm = json_decode($r['bathroom'], true) ?: [];
@@ -167,11 +164,9 @@ $pages = max(1, (int)ceil($count / $per));
             endif; ?>
           </td>
 
-          <!-- Notes / Send indicators -->
           <td><?= trim((string)$r['notes'])   !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
           <td><?= trim((string)$r['send_in']) !== '' ? '<span class="indicator-dot" title="Has text"></span>' : '' ?></td>
 
-          <!-- View link -->
           <td><a href="view.php?id=<?= $r['id'] ?>">View</a></td>
         </tr>
       <?php endforeach; ?>
