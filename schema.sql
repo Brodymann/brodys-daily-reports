@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS reports (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  student_name VARCHAR(120) NOT NULL,
+  report_date DATE NOT NULL,
+  communication TEXT,
+  social TEXT,
+  academic TEXT,
+  adaptive TEXT,
+  specialists JSON NULL,
+  food_drink TEXT,
+  bathroom JSON NULL,
+  send_in TEXT,
+  notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS admins (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  pass_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
