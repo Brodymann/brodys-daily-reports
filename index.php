@@ -37,7 +37,7 @@
 
       <label>Specialists:</label>
       <div class="group">
-        <?php foreach (['APE','OT','PT','Speech'] as $s): ?>
+        <?php foreach (['Adaptive PE','Occupational Therapy','Physical Therapy','Speech Therapy'] as $s): ?>
           <label><input type="checkbox" name="specialists[]" value="<?=$s?>"> <?=$s?></label>
         <?php endforeach; ?>
       </div>
