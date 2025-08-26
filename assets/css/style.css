@@ -32,18 +32,15 @@ body {
   max-width: 860px;
   margin: 24px auto;
   padding: 1.5rem;
-  background: linear-gradient(90deg, #48c6ef 0%, #6f86d6 100%);
+  background-color: var(--container-blue);    /* << blue container */
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
-/* Center the top heading + description */
 .container h1,
 .container > p {
   text-align: center;
 }
-
-
 /* optional: if you have a <form> inside the container, keep it transparent */
 .container form { background: transparent; }
 
@@ -169,7 +166,7 @@ button:active { transform: translateY(1px); }
 main .container,
 main .content,
 main form {
-  background: linear-gradient(90deg, #48c6ef 0%, #6f86d6 100%) !important;
+  background-color: #d9ecfa !important;  /* soft doodle-friendly blue */
   border-radius: 10px;
 }
 
