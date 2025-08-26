@@ -89,3 +89,71 @@ button {
     background-size: 200px auto;
   }
 }
+/* Mobile responsive tweaks */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px; /* slightly larger base font */
+    padding: 8px;
+  }
+
+  .container {
+    padding: 1rem;
+    margin: 12px auto;
+    max-width: 95%; /* use more screen space */
+  }
+
+  input[type=text],
+  input[type=date],
+  textarea {
+    font-size: 16px; /* bigger for mobile typing */
+    padding: 12px;
+  }
+
+  button {
+    width: 100%; /* full-width button for easier tapping */
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .two {
+    grid-template-columns: 1fr; /* stack date and student info vertically */
+    gap: 10px;
+  }
+}
+/* Mobile responsive tweaks + soft vertical centering */
+@media (max-width: 600px) {
+  html, body { height: 100%; }
+  body {
+    min-height: 100dvh;              /* fill the screen on modern mobile */
+    display: flex;                   /* center horizontally */
+    justify-content: center;
+    padding: 8px;                    /* breathing room around edges */
+    font-size: 16px;                 /* larger base font */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 95%;
+    margin: clamp(12px, 3vh, 24px) 0;/* top/bottom space; adapts to viewport */
+    padding: 1rem;
+  }
+
+  input[type=text],
+  input[type=date],
+  textarea {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .two {
+    grid-template-columns: 1fr;      /* stack fields vertically on mobile */
+    gap: 10px;
+  }
+}
+
