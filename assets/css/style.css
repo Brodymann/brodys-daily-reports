@@ -40,6 +40,8 @@ body {
 .container h1,
 .container > p {
   text-align: center;
+  color: #ffffff;
+
 }
 /* optional: if you have a <form> inside the container, keep it transparent */
 .container form { background: transparent; }
@@ -185,5 +187,29 @@ fieldset,
 .panel {
   background: transparent !important;
   border: 0;
+}
+
+/* Make all container text white, except button labels */
+.container {
+  color: #ffffff;
+}
+
+/* Keep buttons readable (don’t inherit white text) */
+.container button {
+  color: #fff; /* your button already has this, but reinforces */
+}
+
+/* Optional: tweak readonly box background so white text shows up */
+.readonly {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+/* Optional: tweak success message for contrast */
+.success {
+  background: rgba(16, 185, 129, 0.2); /* translucent green */
+  border: 1px solid #10b981;
+  color: #ffffff;
 }
 
