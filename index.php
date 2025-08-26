@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
       applause.play();
 
       // let the applause play for ~2 seconds, then submit
-      setTimeout(() => form.submit(), 2000);
+      setTimeout(() => form.submit(), 6000);
     });
   }
 });
