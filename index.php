@@ -23,9 +23,9 @@
       <div class="two">
         <div>
           <label>Daily Progress Report for:</label>
-          <div class="readonly">Brody Baumann</div>
+          <div class="readonly"><strong>Brody Baumann</strong></div>
         </div>
-        <label>Date:
+        <label><strong>Date:</strong>
           <input type="date" name="report_date" required>
         </label>
       </div>
