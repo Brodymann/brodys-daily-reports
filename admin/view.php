@@ -41,5 +41,4 @@ h2{margin-bottom:0}
   <div class="box"><strong>Bathroom:</strong> <?=h($J('bathroom'))?></div>
   <div class="box"><strong>Please Send In:</strong><br><?=$S('send_in')?></div>
   <div class="box"><strong>Notes:</strong><br><?=$S('notes')?></div>
-</body>
-</html>
+</body></html>
