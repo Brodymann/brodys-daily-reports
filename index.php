@@ -23,6 +23,8 @@
       width: 160px; /* shorter box */
       text-align: center;
     }
+    /* Prevent margin-collapsing inside colored containers */
+    .container { overflow: hidden; }
   </style>
 </head>
 <body>
