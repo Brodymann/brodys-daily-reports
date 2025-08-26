@@ -40,8 +40,9 @@ $pages = max(1, (int)ceil($count / $per));
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reports – Admin</title>
+<link rel="stylesheet" href="../assets/css/style.css?v=<?=time()?>">
 <style>
-  /* Page background */
+  /* Extra overrides just for reports.php */
   body {
     margin: 0;
     padding: 0;
@@ -52,7 +53,6 @@ $pages = max(1, (int)ceil($count / $per));
     background-color: #ffffff;
   }
 
-  /* Centered white container */
   .container {
     max-width: 1100px;
     margin: 24px auto;
@@ -62,26 +62,11 @@ $pages = max(1, (int)ceil($count / $per));
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
 
-  .topbar { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    gap: 12px; 
-  }
-  .controls { display: flex; gap: 8px; align-items: center; }
-  input[type=search] { padding: 8px; width: 260px; }
-
-  a.btn, button.btn {
-    background: #111827; color: #fff; 
-    padding: 8px 12px; border-radius: 6px; 
-    text-decoration: none; border: 0;
-  }
-
+  /* table-specific rules */
   table { width: 100%; border-collapse: collapse; margin-top: 12px; }
   th, td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; vertical-align: top; }
   th { font-weight: 700; }
 
-  /* Specialists pills */
   .pill {
     display: inline-block;
     padding: 2px 8px;
@@ -93,20 +78,25 @@ $pages = max(1, (int)ceil($count / $per));
     white-space: nowrap;
   }
 
-  /* Dot indicators for filled text fields */
   .indicator-dot {
     display: inline-block;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #22c55e; /* green */
+    background: #22c55e;
     vertical-align: middle;
   }
 
-  .pager { margin-top: 12px; }
-  .pager a { margin: 0 4px; }
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-wrap table {
+    min-width: 880px;
+  }
 </style>
 </head>
+
 <body>
   <div class="container">
     <div class="topbar">

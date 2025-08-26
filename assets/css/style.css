@@ -270,13 +270,13 @@ fieldset,
   }
 }
 
-/* Admin: make tables scroll horizontally on small screens */
+/* Admin: make wide tables usable on phones */
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 .table-wrap table {
-  min-width: 760px; /* prevents columns from smashing; scroll instead */
+  min-width: 880px;   /* prevents columns from crushing; scroll instead */
 }
 
 /* Prevent margin-collapsing inside colored containers */

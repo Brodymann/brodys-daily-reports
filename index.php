@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title><?=h(APP_NAME)?> – Submit Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=<?=time()?>">
   <style>
     /* Centered date field */
     .date-row {
@@ -20,13 +20,13 @@
     .date-row input[type="date"] {
       font-size: 1.2rem;
       padding: 6px 10px;
-      width: 160px; /* shorter box */
+      width: 160px;
       text-align: center;
     }
-    /* Prevent margin-collapsing inside colored containers */
     .container { overflow: hidden; }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
@@ -41,7 +41,7 @@
 
       <!-- Date centered -->
       <div class="date-row">
-        <label>Date:
+        <label>
           <input type="date" name="report_date" required>
         </label>
       </div>
