@@ -52,6 +52,7 @@
             <span><?=$b?></span>
             <input
               type="number"
+              class="bathroom-field"
               name="bathroom[<?=$key?>]"
               min="0"
               max="10"
