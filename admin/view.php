@@ -9,8 +9,24 @@ $J = fn($k)=>implode(', ', json_decode($r[$k] ?? '[]', true) ?: []);
 ?>
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Report #<?=h($r['id'])?></title>
-<style>body{font-family:system-ui;max-width:860px;margin:24px auto;padding:0 16px}
-h2{margin-bottom:0} .meta{color:#555;margin-top:4px} .box{border:1px solid #eee;padding:12px;border-radius:8px;margin:10px 0}</style></head>
+<style>
+/* Page background */
+body{
+  margin:0;
+  padding:24px 16px;
+  font-family:system-ui, Arial, sans-serif;
+  background-image: url('../assets/images/Educational_Icons_Pattern_1.png');
+  background-repeat: repeat;
+  background-size: 300px auto;
+  background-color:#ffffff;
+  max-width:860px;
+  margin-left:auto;
+  margin-right:auto;
+}
+h2{margin-bottom:0}
+.meta{color:#555;margin-top:4px}
+.box{border:1px solid #eee;padding:12px;border-radius:8px;margin:10px 0;background:#fff}
+</style></head>
 <body>
   <a href="/admin/reports.php">&larr; Back</a>
   <h2>Daily Progress Report</h2>
@@ -25,4 +41,5 @@ h2{margin-bottom:0} .meta{color:#555;margin-top:4px} .box{border:1px solid #eee;
   <div class="box"><strong>Bathroom:</strong> <?=h($J('bathroom'))?></div>
   <div class="box"><strong>Please Send In:</strong><br><?=$S('send_in')?></div>
   <div class="box"><strong>Notes:</strong><br><?=$S('notes')?></div>
-</body></html>
+</body>
+</html>
