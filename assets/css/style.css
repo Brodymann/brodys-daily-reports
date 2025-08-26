@@ -1,7 +1,7 @@
 /* ===== Base ===== */
 :root {
   --bg-pattern-size: 300px auto;
-  --container-blue: #73b4e5;    /* soft blue that complements the doodle theme */
+  --container-blue: #198de6;    /* soft blue that complements the doodle theme */
   --brand-blue: #2563eb;
   --text: #0f172a;
   --muted: #6b7280;
@@ -32,7 +32,7 @@ body {
   max-width: 860px;
   margin: 24px auto;
   padding: 1.5rem;
-  background-color: var(--container-blue);    /* << blue container */
+  background: linear-gradient(90deg, #48c6ef 0%, #6f86d6 100%);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
@@ -162,7 +162,7 @@ button:active { transform: translateY(1px); }
 main .container,
 main .content,
 main form {
-  background-color: #d9ecfa !important;  /* soft doodle-friendly blue */
+  background: linear-gradient(90deg, #48c6ef 0%, #6f86d6 100%) !important;
   border-radius: 10px;
 }
 
