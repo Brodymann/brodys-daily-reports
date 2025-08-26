@@ -1,7 +1,7 @@
 /* ===== Base ===== */
 :root {
   --bg-pattern-size: 300px auto;
-  --container-blue: #198de6;    /* soft blue that complements the doodle theme */
+  --container-blue: #1964e6;    /* darker blue that complements the doodle theme */
   --brand-blue: #2563eb;
   --text: #0f172a;
   --muted: #6b7280;
@@ -166,7 +166,7 @@ button:active { transform: translateY(1px); }
 main .container,
 main .content,
 main form {
-  background-color: #d9ecfa !important;  /* soft doodle-friendly blue */
+  background-color: var(--container-blue) !important;
   border-radius: 10px;
 }
 
