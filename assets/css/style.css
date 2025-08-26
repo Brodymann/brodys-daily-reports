@@ -1,7 +1,7 @@
 /* ===== Base ===== */
 :root {
   --bg-pattern-size: 300px auto;
-  --container-blue: #d9ecfa;    /* soft blue that complements the doodle theme */
+  --container-blue: #73b4e5;    /* soft blue that complements the doodle theme */
   --brand-blue: #2563eb;
   --text: #0f172a;
   --muted: #6b7280;
@@ -156,3 +156,30 @@ button:active { transform: translateY(1px); }
     padding: 14px;
   }
 }
+
+/* Force the blue background on the main wrapper */
+.container,
+main .container,
+main .content,
+main form {
+  background-color: #d9ecfa !important;  /* soft doodle-friendly blue */
+  border-radius: 10px;
+}
+
+/* Keep inputs white */
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  background: #fff !important;
+}
+
+/* Make any nested sections transparent so the blue shows through */
+fieldset,
+.section,
+.card,
+.panel {
+  background: transparent !important;
+  border: 0;
+}
+
