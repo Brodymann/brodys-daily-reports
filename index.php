@@ -1,4 +1,7 @@
-<?php require __DIR__.'/config.php'; require __DIR__.'/helpers.php'; ?>
+<?php 
+require __DIR__.'/config.php'; 
+require __DIR__.'/helpers.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +9,31 @@
   <title><?=h(APP_NAME)?> – Submit Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Bigger bathroom number inputs */
+    .bathroom-field {
+      width: 70px;
+      font-size: 1.2rem;
+      padding: 8px;
+      text-align: center;
+    }
+    .metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .group.compact {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
-    
+    <p>Fill out the daily progress report below. Student is preset to <strong>Brody Baumann</strong>.</p>
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
@@ -44,7 +67,7 @@
 
       <label>Food/Drink:<textarea name="food_drink" rows="3"></textarea></label>
 
-      <label>Bathroom:</label>
+      <label>Bathroom (0–10):</label>
       <div class="group compact">
         <?php foreach (['Changed','Wet','BM','Sat on Toilet','Went on Toilet'] as $b): 
           $key = strtolower(str_replace(' ', '_', $b)); ?>
@@ -73,28 +96,24 @@
   </div>
 
   <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Auto-fill date
-  const dateInput = document.querySelector('input[name="report_date"]');
-  if (dateInput && !dateInput.value) {
-    dateInput.value = new Date().toISOString().split('T')[0];
-  }
+  document.addEventListener("DOMContentLoaded", function() {
+    // Auto-fill date with today
+    const dateInput = document.querySelector('input[name="report_date"]');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
 
-  // Applause on submit
-  const form = document.querySelector("form");
-  const applause = document.getElementById("applause-sound");
-  if (form && applause) {
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();   // stop instant reload
-      applause.currentTime = 0;
-      applause.play();
-
-      // let the applause play for ~2 seconds, then submit
-      setTimeout(() => form.submit(), 6000);
+    // Custom validation message for bathroom fields
+    const bathroomFields = document.querySelectorAll(".bathroom-field");
+    bathroomFields.forEach(field => {
+      field.addEventListener("invalid", function() {
+        this.setCustomValidity("Please enter a value for some bathroom fields");
+      });
+      field.addEventListener("input", function() {
+        this.setCustomValidity(""); // clear message
+      });
     });
-  }
-});
-</script>
-  <audio id="applause-sound" src="assets/sounds/applause.mp3" preload="auto"></audio>
+  });
+  </script>
 </body>
 </html>
