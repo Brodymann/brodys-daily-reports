@@ -60,7 +60,7 @@
 
       <label>Bathroom:</label>
       <div class="group compact">
-        <?php foreach (['Changed','Wet','BM','Sat on Toilet','Went on Toilet'] as $b): 
+        <?php foreach (['Diaper Changed','Wet','BM','Sat on Toilet','Went on Toilet'] as $b): 
           $key = strtolower(str_replace(' ', '_', $b)); ?>
           <label class="metric">
             <span><?=$b?></span>
