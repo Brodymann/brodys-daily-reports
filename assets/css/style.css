@@ -37,6 +37,13 @@ body {
   box-shadow: var(--shadow);
 }
 
+/* Center the top heading + description */
+.container h1,
+.container > p {
+  text-align: center;
+}
+
+
 /* optional: if you have a <form> inside the container, keep it transparent */
 .container form { background: transparent; }
 
