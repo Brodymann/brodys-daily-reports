@@ -109,7 +109,7 @@ input[type=search]{padding:8px;width:260px}
     <h2>Reports (<?=$count?>)</h2>
     <div class="controls">
       <form method="get">
-        <input type="search" name="q" placeholder="Search notes, student, etc." value="<?=h($q)?>">
+        <input type="search" name="q" placeholder="Search reports, comments, notes, etc." value="<?=h($q)?>">
       </form>
       <a class="btn" href="/admin/export_csv.php<?= $q!=='' ? '?q='.urlencode($q):'' ?>">Export CSV</a>
       <a class="btn" href="/admin/logout.php">Logout</a>
@@ -136,7 +136,6 @@ input[type=search]{padding:8px;width:260px}
         <?php foreach($rows as $r): ?>
           <tr>
             <td><?=!empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : ''?></td>
-
 
             <!-- show blue dot if field has any text -->
             <td><?=!empty($r['communication']) ? '<span class="dot"></span>' : ''?></td>
