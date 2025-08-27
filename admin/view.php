@@ -37,6 +37,14 @@ h2 { margin: 0 0 4px 0; color:#fff; }
   border-radius:8px;
   margin:10px 0;
 }
+/* Ensure text inside white cards is dark */
+.box { 
+  color: var(--text);            /* or #0f172a */
+}
+.box strong {
+  color: var(--text);
+}
+
 </style>
 </head>
 <body>
