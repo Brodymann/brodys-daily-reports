@@ -135,7 +135,8 @@ input[type=search]{padding:8px;width:260px}
       <tbody>
         <?php foreach($rows as $r): ?>
           <tr>
-            <td><?=h($r['report_date'])?></td>
+            <td><?=!empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : ''?></td>
+
 
             <!-- show blue dot if field has any text -->
             <td><?=!empty($r['communication']) ? '<span class="dot"></span>' : ''?></td>
