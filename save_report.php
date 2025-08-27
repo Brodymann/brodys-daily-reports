@@ -29,4 +29,18 @@ $stmt->execute([
   ':notes'        => $_POST['notes'] ?? null,
 ]);
 
+// ===== NEW: fetch the newly created row and send notification =====
+$id = (int)db()->lastInsertId();
+if ($id > 0) {
+  $stmt = db()->prepare("SELECT * FROM reports WHERE id = :id");
+  $stmt->execute([':id' => $id]);
+  $r = $stmt->fetch();
+
+  if ($r) {
+    require_once __DIR__ . '/lib/notify.php';   // uses SMTP_* + NOTIFY_TO from config.php
+    notify_report_created($r);                   // errors are logged inside notify(), won’t break redirect
+  }
+}
+// =================================================================
+
 header('Location: /index.php?ok=1');

@@ -3,10 +3,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require_once __DIR__ . '/../vendor/phpmailer/phpmailer/src/SMTP.php';
-require_once __DIR__ . '/../vendor/phpmailer/phpmailer/src/Exception.php';
-require_once __DIR__ . '/../config.php';   // bring in SMTP_* and NOTIFY_TO
 
 function notify_report_created(array $r): void {
     $mail = new PHPMailer(true);
@@ -21,19 +17,24 @@ function notify_report_created(array $r): void {
         $mail->CharSet    = 'UTF-8';
         $mail->Timeout    = 10;
 
-        // From should match authenticated user for Gmail
         $mail->setFrom(SMTP_USER, 'Brody Daily Reports');
         $mail->addAddress(NOTIFY_TO);
 
         $date    = !empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : 'Unknown date';
         $student = $r['student_name'] ?? 'Unknown';
         $viewUrl = "https://brodys.site/admin/view.php?id=" . urlencode($r['id']);
+        $notesPreview = trim($r['notes'] ?? '') !== '' ? mb_strimwidth($r['notes'], 0, 120, '…') : '—';
 
         $mail->Subject = "New Daily Report — {$student} ({$date})";
-        $mail->Body    = "New report for {$student} on {$date}\n\nView it here: {$viewUrl}";
+        $mail->Body    =
+            "New report added:\n".
+            "Date: {$date}\n".
+            "Student: {$student}\n".
+            "Notes: {$notesPreview}\n\n".
+            "View: {$viewUrl}\n";
 
         $mail->send();
     } catch (Exception $e) {
-        error_log("Notify email failed: " . $mail->ErrorInfo);
+        error_log("Notify email failed: ".$mail->ErrorInfo);
     }
 }
