@@ -8,13 +8,13 @@ require __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Database constants
-const DB_HOST = $_ENV['DB_HOST'];
-const DB_NAME = $_ENV['DB_NAME'];
-const DB_USER = $_ENV['DB_USER'];
-const DB_PASS = $_ENV['DB_PASS'];
+// Database (use define or plain variables)
+define('DB_HOST', $_ENV['DB_HOST']);
+define('DB_NAME', $_ENV['DB_NAME']);
+define('DB_USER', $_ENV['DB_USER']);
+define('DB_PASS', $_ENV['DB_PASS']);
 
-const APP_NAME = $_ENV['APP_NAME'] ?? "Brody's Daily Progress Report";
+define('APP_NAME', $_ENV['APP_NAME'] ?? "Brody's Daily Progress Report");
 
 // Email constants
 define('SMTP_HOST', $_ENV['SMTP_HOST']);
