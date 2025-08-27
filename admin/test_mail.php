@@ -6,6 +6,8 @@ $autoload = __DIR__ . '/../vendor/autoload.php';
 $notify   = __DIR__ . '/../lib/notify.php';
 $config   = __DIR__ . '/../config.php';
 
+var_dump(class_exists('PHPMailer\\PHPMailer\\PHPMailer')); // should be true
+
 echo "<pre>";
 echo "autoload exists? "; var_dump(file_exists($autoload));
 echo "notify exists?   "; var_dump(file_exists($notify));
