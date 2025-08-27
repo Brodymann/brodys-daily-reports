@@ -64,7 +64,7 @@ h2 { margin: 0 0 4px 0; color:#fff; }
   <div class="container">
     <a class="back-link" href="/admin/reports.php">&larr; Back</a>
     <div class="report-header">
-  <h2>Daily Progress Report</h2>
+  <h2>Brody's Daily Progress Report</h2>
     <td><?=!empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : ''?></td>
 </div>
     <div class="box"><strong>Communication:</strong><br><?=$S('communication')?></div>
