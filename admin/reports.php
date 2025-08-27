@@ -50,11 +50,18 @@ body {
   background-size: 300px auto;
 }
 
-/* White content container */
-.content {
+/* Blue container */
+.container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 16px;
+  background-color: var(--container-blue);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Keep table white inside container */
+.table-wrap table {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -80,7 +87,7 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
 </style>
 </head>
 <body>
-<div class="content">
+<div class="container">
   <div class="topbar">
     <h2>Reports (<?=$count?>)</h2>
     <div class="controls">
