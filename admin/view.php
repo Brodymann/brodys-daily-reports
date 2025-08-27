@@ -44,7 +44,20 @@ h2 { margin: 0 0 4px 0; color:#fff; }
 .box strong {
   color: var(--text);
 }
+.report-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.report-header h2 {
+  margin: 0;
+  color: #fff; /* stays white on blue container */
+}
+
+.report-header .meta {
+  color: #e5e7eb;
+  margin-top: 4px;
+}
 </style>
 </head>
 <body>
