@@ -88,6 +88,30 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
 .table-wrap table {
   min-width: 880px; /* prevents columns from squishing too much */
 }
+/* Keep the header white on the blue bar */
+.topbar h2 { color: #fff; }
+
+/* Inputs in the top bar: white field, dark text */
+.controls input[type=search] {
+  background: #fff;
+  color: var(--text);
+}
+
+/* Table stays white, but text inside should be dark */
+.table-wrap table { background: #fff; }
+.container table,
+.container th,
+.container td,
+.container .badge,
+.container .pager,
+.container .pager a {
+  color: var(--text);
+}
+
+/* Buttons in the blue header keep white labels */
+.container a.btn,
+.container button.btn { color: #fff; }
+
 </style>
 </head>
 <body>
