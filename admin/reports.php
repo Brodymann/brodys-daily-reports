@@ -39,15 +39,15 @@ $pages = max(1, (int)ceil($count/$per));
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reports – Admin</title>
 <style>
+
 /* Page background */
 body {
   margin: 0;
   padding: 16px;
   font-family: system-ui, Arial, sans-serif;
-  background-image: url('./assets/images/Educational_Icons_Pattern_1.png');
+  background-image: url('../assets/images/Educational_Icons_Pattern_1.png');
   background-repeat: repeat;
   background-size: 300px auto;
-  background-color: #ffffff;
 }
 
 /* White content container */
