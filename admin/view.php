@@ -65,7 +65,7 @@ h2 { margin: 0 0 4px 0; color:#fff; }
     <a class="back-link" href="/admin/reports.php">&larr; Back</a>
     <div class="report-header">
   <h2>Daily Progress Report</h2>
-  <div class="meta">Date: <?=$S('report_date')?> • Student: <?=$S('student_name')?></div>
+    <td><?=!empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : ''?></td>
 </div>
     <div class="box"><strong>Communication:</strong><br><?=$S('communication')?></div>
     <div class="box"><strong>Social:</strong><br><?=$S('social')?></div>
