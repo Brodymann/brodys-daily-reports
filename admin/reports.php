@@ -39,22 +39,14 @@ $pages = max(1, (int)ceil($count/$per));
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reports – Admin</title>
 
-<!-- Global styles: provides background pattern and BLUE container -->
+<!-- Global stylesheet (pattern background + blue .container) -->
 <link rel="stylesheet" href="/assets/css/style.css">
 
 <style>
+/* Page-specific tweaks */
+body { margin: 0; padding: 16px; font-family: system-ui, Arial, sans-serif; }
 
-/* Page background */
-body {
-  margin: 0;
-  padding: 16px;
-  font-family: system-ui, Arial, sans-serif;
-  background-image: url('../assets/images/Educational_Icons_Pattern_1.png');
-  background-repeat: repeat;
-  background-size: 300px auto;
-}
-
-/* Blue container */
+/* Blue container (outer wrapper) */
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -64,63 +56,51 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Keep table white inside container */
-.table-wrap table {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-table{width:100%;border-collapse:collapse;margin-top:12px}
-th,td{border-bottom:1px solid #eee;padding:8px;text-align:left;vertical-align:top}
-.controls{display:flex;gap:8px;align-items:center;margin-top:12px}
-input[type=search]{padding:8px;width:260px}
-a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none;border:0}
-.badge{display:inline-block;padding:4px 8px;border:1px solid #ddd;border-radius:12px;margin-right:4px;font-size:12px;background:#f9fafb}
-.pager a{margin:0 4px}
-.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-
-/* Mobile-friendly table */
-.table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.table-wrap table {
-  min-width: 880px; /* prevents columns from squishing too much */
-}
-/* Keep the header white on the blue bar */
+/* Keep header text white on blue */
 .topbar h2 { color: #fff; }
 
-/* Inputs in the top bar: white field, dark text */
+/* Inputs readable on blue */
 .controls input[type=search] {
   background: #fff;
   color: var(--text);
 }
 
-/* Table stays white, but text inside should be dark */
-.table-wrap table { background: #fff; }
-.container table,
-.container th,
-.container td,
-.container .badge,
-.container .pager,
-.container .pager a {
-  color: var(--text);
+/* Table: readable on white */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-wrap table {
+  min-width: 880px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+th, td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; vertical-align: top; color: var(--text); }
 
+/* Buttons in header keep white labels */
+a.btn, button.btn { background:#111827; color:#fff; padding:8px 12px; border-radius:6px; text-decoration:none; border:0; }
+
+/* Pills */
+.badge { display:inline-block; padding:4px 8px; border:1px solid #ddd; border-radius:12px; margin-right:4px; font-size:12px; background:#f9fafb; color: var(--text); }
+
+/* Pager links readable */
+.pager, .pager a { color: var(--text); }
+
+/* The blue dot indicator */
 .dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #37578f; /* blue dot */
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background-color:#37578f;
 }
 
-
-/* Buttons in the blue header keep white labels */
-.container a.btn,
-.container button.btn { color: #fff; }
-
+/* Layout controls row */
+.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.controls{display:flex;gap:8px;align-items:center;margin-top:12px}
+input[type=search]{padding:8px;width:260px}
+.pager a{margin:0 4px}
 </style>
 </head>
 <body>
@@ -138,24 +118,51 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
 
   <div class="table-wrap">
     <table>
-      <thead><tr>
-        <th>Date</th><th>Communication</th><th>Social</th><th>Academic</th><th>Adaptive</th><th>Specialists</th><th>Bathroom</th><th>Notes</th><th>Send</th>
-      </tr></thead>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Communication</th>
+          <th>Social</th>
+          <th>Academic</th>
+          <th>Adaptive</th>
+          <th>Specialists</th>
+          <th>Bathroom</th>
+          <th>Notes</th>
+          <th>Send</th>
+          <th></th>
+        </tr>
+      </thead>
       <tbody>
         <?php foreach($rows as $r): ?>
           <tr>
+            <td><?=h($r['report_date'])?></td>
+
+            <!-- show blue dot if field has any text -->
             <td><?=!empty($r['communication']) ? '<span class="dot"></span>' : ''?></td>
             <td><?=!empty($r['social']) ? '<span class="dot"></span>' : ''?></td>
             <td><?=!empty($r['academic']) ? '<span class="dot"></span>' : ''?></td>
             <td><?=!empty($r['adaptive']) ? '<span class="dot"></span>' : ''?></td>
-            <td><?php foreach(json_decode($r['specialists'] ?? '[]', true) ?: [] as $s) echo '<span class="badge">'.h($s).'</span>'; ?></td>
-            <td><?php foreach(json_decode($r['bathroom'] ?? '[]', true) ?: [] as $b) echo '<span class="badge">'.h($b).'</span>'; ?></td>
+
+            <!-- Specialists (keep pills) -->
+            <td>
+              <?php foreach(json_decode($r['specialists'] ?? '[]', true) ?: [] as $s) echo '<span class="badge">'.h($s).'</span>'; ?>
+            </td>
+
+            <!-- Bathroom (keep numbers/pills as-is) -->
+            <td>
+              <?php foreach(json_decode($r['bathroom'] ?? '[]', true) ?: [] as $b) echo '<span class="badge">'.h($b).'</span>'; ?>
+            </td>
+
+            <!-- Notes + Send: blue dot if non-empty -->
             <td><?=!empty($r['notes']) ? '<span class="dot"></span>' : ''?></td>
             <td><?=!empty($r['send_in']) ? '<span class="dot"></span>' : ''?></td>
-            <td><a href="/admin/view.php?id=<?=$r['id']?>">View</a></td>
+
+            <td><a href="/admin/view.php?id=<?=h($r['id'])?>">View</a></td>
           </tr>
         <?php endforeach; ?>
-        <?php if(!$rows): ?><tr><td colspan="10">No reports.</td></tr><?php endif;?>
+        <?php if(!$rows): ?>
+          <tr><td colspan="10">No reports.</td></tr>
+        <?php endif;?>
       </tbody>
     </table>
   </div>
