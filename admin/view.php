@@ -23,6 +23,16 @@ body{
   margin-left:auto;
   margin-right:auto;
 }
+/* ===== Layout ===== */
+.container {
+  max-width: 860px;
+  margin: 24px auto;
+  padding: 1.5rem;
+  background-color: var(--container-blue);    /* << blue container */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
 h2{margin-bottom:0}
 .meta{color:#555;margin-top:4px}
 .box{border:1px solid #eee;padding:12px;border-radius:8px;margin:10px 0;background:#fff}

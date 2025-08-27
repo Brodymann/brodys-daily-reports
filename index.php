@@ -54,7 +54,7 @@
       <!-- Date centered -->
       <div class="date-row">
         <label>
-          <input type="date" name="report_date" required>
+          <strong><input type="date" name="report_date" required></strong>
         </label>
       </div>
 
@@ -65,7 +65,7 @@
 
       <label>Specialists:</label>
       <div class="group">
-        <?php foreach (['Adaptive PE','Occupational Therapy','Physical Therapy','Speech Therapy'] as $s): ?>
+        <?php foreach (['APE','O/T','P/T','Speech'] as $s): ?>
           <label><input type="checkbox" name="specialists[]" value="<?=$s?>"> <?=$s?></label>
         <?php endforeach; ?>
       </div>
