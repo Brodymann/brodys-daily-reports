@@ -177,5 +177,17 @@ input[type=search]{padding:8px;width:260px}
     <?php endfor; ?>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const search = document.querySelector('input[type=search]');
+  if (search) {
+    search.addEventListener('search', function() {
+      if (search.value === '') {
+        search.form.submit();
+      }
+    });
+  }
+});
+</script>
 </body>
 </html>
