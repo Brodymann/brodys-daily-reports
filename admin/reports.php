@@ -108,6 +108,15 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
   color: var(--text);
 }
 
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #37578f; /* blue dot */
+}
+
+
 /* Buttons in the blue header keep white labels */
 .container a.btn,
 .container button.btn { color: #fff; }
@@ -135,15 +144,14 @@ a.btn,button.btn{background:#111827;color:#fff;padding:8px 12px;border-radius:6p
       <tbody>
         <?php foreach($rows as $r): ?>
           <tr>
-            <td><?=h($r['report_date'])?></td>
-            <td><?=h($r['communication'])?></td>
-            <td><?=h($r['social'])?></td>
-            <td><?=h($r['academic'])?></td>
-            <td><?=h($r['adaptive'])?></td>
+            <td><?=!empty($r['communication']) ? '<span class="dot"></span>' : ''?></td>
+            <td><?=!empty($r['social']) ? '<span class="dot"></span>' : ''?></td>
+            <td><?=!empty($r['academic']) ? '<span class="dot"></span>' : ''?></td>
+            <td><?=!empty($r['adaptive']) ? '<span class="dot"></span>' : ''?></td>
             <td><?php foreach(json_decode($r['specialists'] ?? '[]', true) ?: [] as $s) echo '<span class="badge">'.h($s).'</span>'; ?></td>
             <td><?php foreach(json_decode($r['bathroom'] ?? '[]', true) ?: [] as $b) echo '<span class="badge">'.h($b).'</span>'; ?></td>
-            <td><?=h(mb_strimwidth($r['notes'] ?? '', 0, 80, '…'))?></td>
-            <td><?=h($r['send_in'])?></td>
+            <td><?=!empty($r['notes']) ? '<span class="dot"></span>' : ''?></td>
+            <td><?=!empty($r['send_in']) ? '<span class="dot"></span>' : ''?></td>
             <td><a href="/admin/view.php?id=<?=$r['id']?>">View</a></td>
           </tr>
         <?php endforeach; ?>
