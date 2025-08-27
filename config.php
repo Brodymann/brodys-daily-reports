@@ -3,21 +3,25 @@
 declare(strict_types=1);
 session_start();
 
-// DreamHost credentials
-const DB_HOST = 'mysql-1.kylebaumann.com';
-const DB_NAME = 'brody_reports';
-const DB_USER = 'brody_user';
-const DB_PASS = 'B0dy!m00vin81';
+require __DIR__ . '/vendor/autoload.php';
 
-const APP_NAME = "Brody's Daily Progress Report";
-const ADMIN_EMAIL_FROM = 'admin@brodys.site'; // optional
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-// --- Email / SMTP (Gmail App Password required) ---
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_USER', 'kylebaumann@gmail.com');                 // your Gmail
-define('SMTP_PASS', 'fvrsgvsudswrzsek');             // Google App Password
-define('SMTP_PORT', 587);
-define('NOTIFY_TO', 'kylebaumann@gmail.com');                 // where to receive notifications
+// Database constants
+const DB_HOST = $_ENV['DB_HOST'];
+const DB_NAME = $_ENV['DB_NAME'];
+const DB_USER = $_ENV['DB_USER'];
+const DB_PASS = $_ENV['DB_PASS'];
+
+const APP_NAME = $_ENV['APP_NAME'] ?? "Brody's Daily Progress Report";
+
+// Email constants
+define('SMTP_HOST', $_ENV['SMTP_HOST']);
+define('SMTP_USER', $_ENV['SMTP_USER']);
+define('SMTP_PASS', $_ENV['SMTP_PASS']);
+define('SMTP_PORT', (int)$_ENV['SMTP_PORT']);
+define('NOTIFY_TO', $_ENV['NOTIFY_TO']);
 
 function db(): PDO {
   static $pdo = null;
