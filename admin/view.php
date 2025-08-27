@@ -50,9 +50,10 @@ h2 { margin: 0 0 4px 0; color:#fff; }
 <body>
   <div class="container">
     <a class="back-link" href="/admin/reports.php">&larr; Back</a>
-    <h2>Daily Progress Report</h2>
-    <div class="meta">Date: <?=$S('report_date')?> • Student: <?=$S('student_name')?></div>
-
+    <div class="report-header">
+  <h2>Daily Progress Report</h2>
+  <div class="meta">Date: <?=$S('report_date')?> • Student: <?=$S('student_name')?></div>
+</div>
     <div class="box"><strong>Communication:</strong><br><?=$S('communication')?></div>
     <div class="box"><strong>Social:</strong><br><?=$S('social')?></div>
     <div class="box"><strong>Academic:</strong><br><?=$S('academic')?></div>
