@@ -18,7 +18,7 @@ function notify_report_created(array $r): void {
         $mail->Timeout    = 10;
 
         $mail->setFrom(SMTP_USER, 'Brody Daily Reports');
-        $mail->addAddress(NOTIFY_TO);
+        $mail->addAddress(NOTIFY_TO, 'kylebaumann@gmail.com');
 
         $date    = !empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : 'Unknown date';
         $student = $r['student_name'] ?? 'Unknown';

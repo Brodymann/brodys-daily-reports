@@ -11,7 +11,7 @@ require __DIR__ . '/../config.php';
 require __DIR__ . '/../lib/notify.php';
 
 // (Optional) quick sanity checks
-echo "<pre>";
+echo "<pre>NOTIFY_TO: "; var_dump(defined('NOTIFY_TO') ? NOTIFY_TO : '(not defined)'); echo "</pre>";
 echo "SMTP_HOST defined? "; var_dump(defined('SMTP_HOST'));
 echo "Autoloader present? "; var_dump(file_exists(__DIR__ . '/../vendor/autoload.php'));
 echo "PHPMailer class available? "; var_dump(class_exists('PHPMailer\\PHPMailer\\PHPMailer'));
