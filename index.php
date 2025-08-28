@@ -25,15 +25,18 @@
       width: 160px; /* shorter box */
       text-align: center;
     }
+
     /* Prevent margin-collapsing inside colored containers */
     .container { overflow: hidden; }
 
-    /* Brody + Kyle photo */
+    /* Brody photo: responsive perfect circle */
     .brody-photo {
       display: block;
       margin: 0 auto 20px auto;
-      max-width: 220px;
-      border-radius: 12px;
+      width: clamp(120px, 35vw, 220px); /* responsive sizing */
+      aspect-ratio: 1 / 1;              /* keep it square */
+      object-fit: cover;                 /* fill the circle nicely */
+      border-radius: 50%;                /* make it a circle */
       box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
   </style>
@@ -42,8 +45,14 @@
   <div class="container">
     <h1><?=h(APP_NAME)?></h1>
 
-    <!-- Photo of Brody + Kyle -->
-    <img src="assets/images/Brody_Kyle.jpg" alt="Brody and Kyle" class="brody-photo">
+    <!-- Photo of Brody -->
+    <img
+      src="assets/images/brody_grade_7.jpg"
+      alt="Brodys 7th grade portrait"
+      class="brody-photo"
+      loading="eager"
+      decoding="async"
+    >
 
     <?php if (!empty($_GET['ok'])): ?>
       <div class="success">Report submitted. Thank you!</div>
@@ -119,7 +128,7 @@
         applause.currentTime = 0;
         applause.play();
 
-        // let the applause play for ~2 seconds, then submit
+        // let the applause play, then submit
         setTimeout(() => form.submit(), 6000);
       });
     }
