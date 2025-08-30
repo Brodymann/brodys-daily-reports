@@ -85,7 +85,7 @@
 
       <label>Bathroom:</label>
       <div class="group compact">
-        <?php foreach (['Diaper Changed','Wet','BM','Sat on Toilet','Went on Toilet'] as $b): 
+        <?php foreach (['Diaper Changes','Wet','BM','Sat on Toilet','Went on Toilet'] as $b): 
           $key = strtolower(str_replace(' ', '_', $b)); ?>
           <label class="metric">
             <span><?=$b?></span>
@@ -94,7 +94,7 @@
               class="bathroom-field"
               name="bathroom[<?=$key?>]"
               min="0"
-              max="10"
+              max="9"
               step="1"
               inputmode="numeric"
               value="0"
