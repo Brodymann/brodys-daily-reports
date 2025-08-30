@@ -7,43 +7,47 @@
   <meta charset="utf-8" />
   <title><?=h(APP_NAME)?> – Submit Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=<?=time()?>" />
   <style>
-    /* Centered date field */
-    .date-row {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .date-row label {
-      font-weight: 600;
-      font-size: 1.2rem;
-    }
-    .date-row input[type="date"] {
-      font-size: 1.2rem;
-      padding: 6px 10px;
-      width: 160px; /* shorter box */
-      text-align: center;
-    }
+  /* Centered date field */
+  .date-row {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .date-row label {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  .date-row input[type="date"] {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+    width: 160px; /* shorter box */
+    text-align: center;
+  }
 
-    /* Prevent margin-collapsing inside colored containers */
-    .container { overflow: hidden; }
-
-    /* Brody photo: responsive perfect circle */
-    .brody-photo {
-      display: block;
-      margin: 0 auto 20px auto;
-      width: clamp(120px, 35vw, 220px); /* responsive sizing */
-      aspect-ratio: 1 / 1;              /* keep it square */
-      object-fit: cover;                 /* fill the circle nicely */
-      border-radius: 50%;                /* make it a circle */
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    }
-  </style>
+  /* Brody photo: responsive perfect circle with shadow */
+  .brody-photo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: clamp(120px, 35vw, 220px);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow:
+      0 4px 6px rgba(0,0,0,0.5),   /* main shadow */
+      0 12px 20px rgba(0,0,0,0.4); /* softer outer glow */
+  }
+</style>
 </head>
 <body>
   <div class="container">
-    <h1><?=h(APP_NAME)?></h1>
+
+    <!-- Title inside styled white box -->
+    <div class="title-box">
+      <h1><?=h(APP_NAME)?></h1>
+    </div>
 
     <!-- Photo of Brody -->
     <img
