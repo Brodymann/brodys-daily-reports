@@ -41,16 +41,25 @@ body {
 .container > p {
   text-align: center;
   color: #ffffff;
-
 }
-/* optional: if you have a <form> inside the container, keep it transparent */
+
 .container form { background: transparent; }
 
 /* ===== Typography & Controls ===== */
+/* Default label style */
 label {
   display: block;
   font-weight: 600;
   margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+/* Larger top-level section headers (direct children of the form) */
+.container > form > label {
+  font-weight: 700;
+  font-size: 1.25rem;   /* ~20px */
+  margin-top: 18px;
+  margin-bottom: 8px;
 }
 
 .group {
@@ -60,7 +69,11 @@ label {
   margin-top: 8px;
 }
 
-.group label { font-weight: 400; }
+/* Smaller labels inside groups (Specialists checkboxes, Bathroom metrics) */
+.group label {
+  font-weight: 500;
+  font-size: 1.125rem;  /* ~18px */
+}
 
 /* Inputs stay white */
 input[type="text"],
@@ -68,12 +81,14 @@ input[type="date"],
 textarea,
 select {
   width: 100%;
-  padding: 10px 12px;
+  padding: 14px 16px;
   background: var(--surface);
   border: 1px solid #d1d5db;
   border-radius: 6px;
   color: var(--text);
   outline: none;
+  font-size: 1.125rem;   /* ~18px */
+  line-height: 1.5;
 }
 
 /* Focus ring for accessibility */
@@ -125,6 +140,35 @@ button:active { transform: translateY(1px); }
   color: var(--muted);
 }
 
+/* ===== Specialists: bigger checkboxes + spacing ===== */
+.group input[type="checkbox"] {
+  transform: scale(1.35);
+  transform-origin: left center;
+  margin-right: 8px;
+}
+
+/* ===== Bathroom metrics ===== */
+.metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.metric span {
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 600;
+}
+
+.bathroom-field {
+  font-size: 1.2rem;     /* ~19px */
+  padding: 8px 10px;
+  width: 50px;           /* short width for 1–2 digits */
+  text-align: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+
 /* ===== Responsive (mobile) ===== */
 @media (max-width: 600px) {
   body {
@@ -144,7 +188,7 @@ button:active { transform: translateY(1px); }
   }
 
   .two {
-    grid-template-columns: 1fr;   /* stack fields vertically */
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
@@ -160,6 +204,14 @@ button:active { transform: translateY(1px); }
     width: 100%;
     font-size: 18px;
     padding: 14px;
+  }
+
+  .group.compact { gap: 12px; }
+  .metric { align-items: flex-start; }
+  .bathroom-field {
+    width: 48px;
+    font-size: 1.125rem;
+    padding: 8px;
   }
 }
 
@@ -180,10 +232,10 @@ select {
   background: #fff !important;
 }
 
-/* Make any nested sections transparent so the blue shows through */
+/* Make any nested sections transparent */
 fieldset,
 .section,
-.card,
+card,
 .panel {
   background: transparent !important;
   border: 0;
@@ -194,29 +246,25 @@ fieldset,
   color: #ffffff;
 }
 
-/* Keep buttons readable (don’t inherit white text) */
-.container button {
-  color: #fff; /* your button already has this, but reinforces */
-}
+.container button { color: #fff; }
 
-/* Optional: tweak readonly box background so white text shows up */
+/* Readonly + success tweaks */
 .readonly {
   background: rgba(255, 255, 255, 0.15);
   border: 1px dashed rgba(255, 255, 255, 0.4);
   color: #ffffff;
 }
 
-/* Optional: tweak success message for contrast */
 .success {
-  background: rgba(16, 185, 129, 0.2); /* translucent green */
+  background: rgba(16, 185, 129, 0.2);
   border: 1px solid #10b981;
   color: #ffffff;
 }
 
 /* Button styles */
 .container button {
-  background: #ffffff;                 /* white background */
-  color: var(--container-blue);        /* text color = container blue */
+  background: #ffffff;
+  color: var(--container-blue);
   font-weight: 600;
   border: 2px solid var(--container-blue);
   border-radius: 6px;
@@ -226,16 +274,14 @@ fieldset,
 }
 
 .container button:hover {
-  background: var(--container-blue);   /* invert on hover */
-  color: #ffffff;                      /* text turns white */
+  background: var(--container-blue);
+  color: #ffffff;
 }
 
 /* ===== Mobile polish ===== */
 @media (max-width: 640px) {
-  /* Background pattern smaller */
   body { background-size: 200px auto; }
 
-  /* Containers fill screen nicely */
   .container {
     max-width: 95%;
     width: 95%;
@@ -245,13 +291,9 @@ fieldset,
     box-shadow: 0 1px 5px rgba(0,0,0,.12);
   }
 
-  /* Tighten label spacing so sections don't look broken */
   label { margin-top: 10px; }
-
-  /* Textareas: comfortable tap targets but not too tall */
   textarea { padding: 10px; }
 
-  /* Date row: keep it centered and compact on phones */
   .date-row { margin: 12px 0; }
   .date-row label { font-size: 1rem; }
   .date-row input[type="date"] {
@@ -259,26 +301,15 @@ fieldset,
     font-size: 1.1rem;
     padding: 6px 10px;
   }
-
-  /* Bathroom inputs: keep them big but not overflowing */
-  .group.compact { gap: 12px; }
-  .metric { align-items: flex-start; }
-  .bathroom-field {
-    width: 64px;           /* slightly narrower on phones */
-    font-size: 1.1rem;
-    padding: 8px;
-  }
 }
 
-/* Admin: make wide tables usable on phones */
+/* Admin tables */
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 .table-wrap table {
-  min-width: 880px;   /* prevents columns from crushing; scroll instead */
+  min-width: 880px;
 }
 
-/* Prevent margin-collapsing inside colored containers */
 .container { overflow: hidden; }
-
