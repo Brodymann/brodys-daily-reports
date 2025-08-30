@@ -96,11 +96,54 @@ a.btn, button.btn { background:#111827; color:#fff; padding:8px 12px; border-rad
   background-color:#37578f;
 }
 
+
+
 /* Layout controls row */
-.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-.controls{display:flex;gap:8px;align-items:center;margin-top:12px}
-input[type=search]{padding:8px;width:260px}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;                 /* allow wrapping on small screens */
+}
+
+/* Search + actions */
+.controls{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex: 1 1 auto;                 /* let this block grow next to the H2 */
+}
+
+/* Let the form/search take remaining space but not hog it */
+.controls form{
+  flex: 1 1 260px;                /* base ~260px, can grow/shrink */
+  min-width: 160px;
+}
+.controls input[type=search]{
+  width:100%;                     /* fill the form’s flex space */
+  padding:8px;
+  background:#fff;
+  color: var(--text);
+}
+
+/* Keep buttons compact and visible */
+.controls .btn{
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding:8px 12px;
+}
+
+/* Tighter pager spacing */
 .pager a{margin:0 4px}
+
+/* Mobile: put search full-width on its own line; buttons below */
+@media (max-width: 520px){
+  .controls{flex-wrap:wrap}
+  .controls form{flex: 1 1 100%}
+  .controls .btn{margin-top:6px}
+}
+
 </style>
 </head>
 <body>
