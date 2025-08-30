@@ -98,16 +98,17 @@ textarea { margin-bottom: 20px; }
   margin-bottom: 12px;
 }
 
-/* groups (checkbox rows, metric rows) */
+/* ===== Groups (Specialists + Bathroom) ===== */
 .group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-direction: column;   /* stack vertically */
+  gap: 12px;
   margin-top: 12px;
   margin-bottom: 16px;
 }
+
 .group label {
-  display: flex;                    /* keep label text + control on one line */
+  display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 500;
@@ -213,7 +214,7 @@ button:active { transform: translateY(1px); }
 
 /* ===== Bathroom metrics ===== */
 .metric {
-  display: flex;            /* not inline-flex -> better wrapping on mobile */
+  display: flex;   /* keep label + number box side by side */
   align-items: center;
   gap: 10px;
 }
@@ -251,7 +252,6 @@ button:active { transform: translateY(1px); }
     padding: 8px;
     background-size: 200px auto;
     min-height: 100dvh;
-    /* removed body flex-centering to prevent odd layout on phones */
   }
 
   .container {
@@ -268,25 +268,17 @@ button:active { transform: translateY(1px); }
   input[type="text"],
   input[type="date"],
   textarea,
-  select {
+  select,
+  .bathroom-field {
     font-size: 16px;
     padding: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.35);  /* lighter on mobile */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.35);
   }
 
   button {
     width: 100%;
     font-size: 18px;
     padding: 14px;
-  }
-
-  .group.compact { gap: 12px; }
-
-  .bathroom-field {
-    width: 48px;
-    font-size: 1.125rem;
-    padding: 8px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.35);
   }
 
   /* Date row tweaks if used */
