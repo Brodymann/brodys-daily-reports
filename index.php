@@ -1,6 +1,7 @@
 <?php 
   require __DIR__.'/config.php'; 
-  require __DIR__.'/helpers.php'; ?>
+  require __DIR__.'/helpers.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
   .date-row input[type="date"] {
     font-size: 1.2rem;
     padding: 6px 10px;
-    width: 160px; /* shorter box */
+    width: 160px;
     text-align: center;
   }
 
@@ -36,8 +37,8 @@
     object-fit: cover;
     border-radius: 50%;
     box-shadow:
-      0 4px 6px rgba(0,0,0,0.5),   /* main shadow */
-      0 12px 20px rgba(0,0,0,0.4); /* softer outer glow */
+      0 4px 6px rgba(0,0,0,0.5),
+      0 12px 20px rgba(0,0,0,0.4);
   }
 </style>
 </head>
@@ -69,7 +70,14 @@
       <!-- Date centered -->
       <div class="date-row">
         <label>
-          <strong><input type="date" name="report_date" required></strong>
+          <strong>
+            <input 
+              type="date" 
+              name="report_date" 
+              required 
+              value="<?= date('Y-m-d') ?>"  <!-- server-side fallback -->
+            >
+          </strong>
         </label>
       </div>
 
@@ -117,10 +125,10 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Auto-fill date
+    // Auto-fill date with local timezone
     const dateInput = document.querySelector('input[name="report_date"]');
     if (dateInput && !dateInput.value) {
-      dateInput.value = new Date().toISOString().split('T')[0];
+      dateInput.valueAsDate = new Date();  // use local time
     }
 
     // Applause on submit
@@ -128,11 +136,9 @@
     const applause = document.getElementById("applause-sound");
     if (form && applause) {
       form.addEventListener("submit", function(e) {
-        e.preventDefault();   // stop instant reload
+        e.preventDefault();
         applause.currentTime = 0;
         applause.play();
-
-        // let the applause play, then submit
         setTimeout(() => form.submit(), 6000);
       });
     }
