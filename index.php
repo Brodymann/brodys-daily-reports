@@ -75,7 +75,7 @@
               type="date" 
               name="report_date" 
               required 
-              value="<?= date('Y-m-d') ?>"  <!-- server-side fallback -->
+              value="<?= date('Y-m-d') ?>"  
             >
           </strong>
         </label>
@@ -128,6 +128,7 @@
   document.addEventListener("DOMContentLoaded", () => {
   const dateInput = document.querySelector('input[name="report_date"]');
   if (dateInput) {
+    
     // set to local date, time zeroed to avoid DST quirks
     const now = new Date();
     dateInput.valueAsDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
