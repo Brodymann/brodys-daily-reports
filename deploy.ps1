@@ -1,10 +1,22 @@
-# deploy.ps1
-Set-Location "C:\Dev\Brodys_Website\brodys.site"
+# deploy.ps1 — portable + safe
+# Runs from the script's own folder (works on C: or D:)
+# Builds a conventional commit message and pushes to DreamHost + GitHub.
 
-# Stage everything
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+# 1) Go to the script folder (portable across machines)
+$repoRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
+Set-Location $repoRoot
+
+# 2) Show where we are (helps sanity-check)
+Write-Output "Repo: $(Get-Location)"
+
+# 3) Stage everything
 git add -A
 
-# Check if there is anything to commit
+# 4) Check if anything is staged
+#    If no staged changes, skip the commit step
 git diff --cached --quiet 2>$null
 $hasChanges = ($LASTEXITCODE -ne 0)
 
@@ -31,17 +43,29 @@ if ($hasChanges) {
   }
 
   $msg = Read-Host "Enter short commit message"
-  $commitMessage = "${type}: ${msg}"
+  $commitMessage = "${type}: ${msg}"   # <-- braces fix the $type: parsing issue
 
   git commit -m "$commitMessage"
 } else {
   Write-Output "No changes to commit. Pushing only..."
 }
 
-Write-Output "Pushing to DreamHost..."
-git push dreamhost main
+# 5) Push: DreamHost (if remote exists)
+try {
+  $null = git remote get-url dreamhost 2>$null
+  Write-Output "Pushing to DreamHost..."
+  git push dreamhost main
+} catch {
+  Write-Warning "Skipping DreamHost push (remote 'dreamhost' not found)."
+}
 
-Write-Output "Pushing to GitHub..."
-git push origin main
+# 6) Push: GitHub (if remote exists)
+try {
+  $null = git remote get-url origin 2>$null
+  Write-Output "Pushing to GitHub..."
+  git push origin main
+} catch {
+  Write-Warning "Skipping GitHub push (remote 'origin' not found)."
+}
 
 Write-Output "$([char]0x2705) Deployment complete!"
