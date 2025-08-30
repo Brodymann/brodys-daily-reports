@@ -1,5 +1,5 @@
 # deploy.ps1
-Set-Location "D:\Dev\Brodys_Website\brodys.site"
+Set-Location "C:\Dev\Brodys_Website\brodys.site"
 
 # Stage everything
 git add -A
