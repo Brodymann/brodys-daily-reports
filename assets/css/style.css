@@ -7,7 +7,7 @@
   --muted: #6b7280;
   --surface: #ffffff;
   --radius: 10px;
-  --shadow: 0 2px 6px rgba(0,0,0,.75);  /* darker default shadow */
+  --shadow: 0 2px 6px rgba(0,0,0,.75);
 }
 
 *,
@@ -35,11 +35,15 @@ body {
   background-color: var(--container-blue);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  color: #ffffff;
+  overflow: visible;
 }
 
-/* Title styling (general) */
+.container form { background: transparent; }
+
+/* ===== Title (general) ===== */
 .container h1 {
-  text-transform: uppercase;   /* ALL CAPS by default */
+  text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 700;
@@ -49,64 +53,63 @@ body {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.container > p {
-  text-align: center;
-  color: #ffffff;
-}
 
-.container form { background: transparent; }
+.container > p { text-align: center; color: #ffffff; }
 
-/* ===== Title inside its own styled white box ===== */
+/* ===== Title inside white box ===== */
 .title-box {
-  background: #ffffff;                             /* clean white */
+  background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
   padding: 20px 28px;
   border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);         /* stronger shadow */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
   text-align: center;
   margin-bottom: 28px;
-  border: 2px solid rgba(55, 87, 143, 0.15);       /* subtle blue border */
-  background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%); /* light gradient */
+  border: 2px solid rgba(55, 87, 143, 0.15);
 }
 .title-box h1 {
-  text-transform: none;                            /* keep normal casing in the box */
+  text-transform: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--container-blue);                    /* themed blue text */
+  color: var(--container-blue);
   margin: 0;
   letter-spacing: 0.5px;
 }
 
 /* ===== Typography & Controls ===== */
 label {
+  display: block;                   /* critical for mobile: stack inputs */
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
   color: #f8fafc;
-  margin-top: 22px;     /* more space between fields */
-  margin-bottom: 10px;  /* base spacing */
+  margin-top: 22px;
+  margin-bottom: 10px;
 }
 
-/* EXTRA spacing for textarea sections only */
-label textarea { margin-top: 6px; }  /* gap between label text and box */
-textarea { margin-bottom: 20px; }     /* space after each textarea block */
+/* spacing for textarea sections */
+label textarea { margin-top: 6px; }
+textarea { margin-bottom: 20px; }
 
 .container > form > label {
   font-weight: 700;
   font-size: 1.25rem;
-  margin-top: 26px;      /* more separation for section headers */
+  margin-top: 26px;
   margin-bottom: 12px;
 }
 
+/* groups (checkbox rows, metric rows) */
 .group {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 12px;
-  margin-bottom: 16px;   /* space below checkbox/metric groups */
+  margin-bottom: 16px;
 }
-
 .group label {
+  display: flex;                    /* keep label text + control on one line */
+  align-items: center;
+  gap: 8px;
   font-weight: 500;
   font-size: 1.125rem;
 }
@@ -118,7 +121,7 @@ textarea,
 select {
   width: 100%;
   padding: 14px 16px;
-  background: var(--surface);
+  background: var(--surface) !important;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   color: var(--text);
@@ -155,164 +158,10 @@ button {
   cursor: pointer;
   font-weight: 600;
 }
-
 button:hover { filter: brightness(0.95); }
 button:active { transform: translateY(1px); }
 
-/* ===== Status boxes ===== */
-.success {
-  background: #ecfdf5;
-  border: 1px solid #10b981;
-  color: #065f46;
-  padding: 10px;
-  border-radius: 6px;
-  margin: 14px 0;
-}
-
-.readonly {
-  background: #f9fafb;
-  border: 1px dashed #d1d5db;
-  padding: 8px;
-  border-radius: 6px;
-  color: var(--muted);
-}
-
-/* ===== Checkboxes ===== */
-.group input[type="checkbox"] {
-  transform: scale(1.35);
-  transform-origin: left center;
-  margin-right: 8px;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.75);
-}
-
-.group input[type="checkbox"]:focus-visible {
-  outline: 2px solid rgba(37,99,235,.55);
-  outline-offset: 2px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.45);
-}
-
-/* ===== Bathroom metrics ===== */
-.metric {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.metric span {
-  font-size: 1.125rem;
-  font-weight: 600;
-}
-
-.bathroom-field {
-  font-size: 1.2rem;
-  padding: 8px 10px;
-  width: 50px;
-  text-align: center;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.75);
-  transition: box-shadow .15s ease, border-color .15s ease;
-}
-
-.bathroom-field:focus {
-  border-color: var(--brand-blue);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.75), 0 0 0 3px rgba(37, 99, 235, .25);
-}
-
-/* ===== Responsive (mobile) ===== */
-@media (max-width: 600px) {
-  body {
-    font-size: 16px;
-    padding: 8px;
-    background-size: 200px auto;
-    min-height: 100dvh;
-    display: flex;
-    justify-content: center;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 95%;
-    margin: clamp(12px, 3vh, 24px) 0;
-    padding: 1rem;
-  }
-
-  .two {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  input[type="text"],
-  input[type="date"],
-  textarea,
-  select {
-    font-size: 16px;
-    padding: 12px;
-  }
-
-  button {
-    width: 100%;
-    font-size: 18px;
-    padding: 14px;
-  }
-
-  .group.compact { gap: 12px; }
-  .metric { align-items: flex-start; }
-  .bathroom-field {
-    width: 48px;
-    font-size: 1.125rem;
-    padding: 8px;
-  }
-}
-
-/* ===== Container adjustments ===== */
-.container,
-main .container,
-main .content,
-main form {
-  background-color: var(--container-blue) !important;
-  border-radius: 10px;
-}
-
-input[type="text"],
-input[type="date"],
-textarea,
-select {
-  background: #fff !important;
-}
-
-fieldset,
-.section,
-card,
-panel {
-  background: transparent !important;
-  border: 0;
-}
-
-.container {
-  color: #ffffff;
-  overflow: visible;
-}
-
-.container button { color: #fff; }
-
-/* ===== Readonly + success tweaks ===== */
-.readonly {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px dashed rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-}
-
-.success {
-  background: rgba(16, 185, 129, 0.2);
-  border: 1px solid #10b981;
-  color: #ffffff;
-}
-
-/* ===== Button styles ===== */
+/* blue-container button style */
 .container button {
   background: #ffffff;
   color: var(--container-blue);
@@ -324,36 +173,68 @@ panel {
   transition: all 0.2s ease;
   box-shadow: 0 4px 10px rgba(0,0,0,0.75);
 }
-
 .container button:hover {
   background: var(--container-blue);
   color: #ffffff;
   box-shadow: 0 6px 14px rgba(0,0,0,0.75);
 }
 
-/* ===== Mobile polish ===== */
-@media (max-width: 640px) {
-  body { background-size: 200px auto; }
+/* ===== Status boxes ===== */
+.success {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10b981;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 14px 0;
+}
+.readonly {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  padding: 8px;
+  border-radius: 6px;
+  color: #ffffff;
+}
 
-  .container {
-    max-width: 95%;
-    width: 95%;
-    margin: 12px auto;
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: 0 1px 5px rgba(0,0,0,.12);
-  }
+/* ===== Checkboxes ===== */
+.group input[type="checkbox"] {
+  transform: scale(1.35);
+  transform-origin: left center;
+  margin-right: 4px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.75);
+}
+.group input[type="checkbox"]:focus-visible {
+  outline: 2px solid rgba(37,99,235,.55);
+  outline-offset: 2px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.45);
+}
 
-  label { margin-top: 16px; margin-bottom: 8px; }
-  textarea { padding: 10px; }
-
-  .date-row { margin: 16px 0; }
-  .date-row label { font-size: 1rem; }
-  .date-row input[type="date"] {
-    width: 140px;
-    font-size: 1.1rem;
-    padding: 6px 10px;
-  }
+/* ===== Bathroom metrics ===== */
+.metric {
+  display: flex;            /* not inline-flex -> better wrapping on mobile */
+  align-items: center;
+  gap: 10px;
+}
+.metric span {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.bathroom-field {
+  font-size: 1.2rem;
+  padding: 8px 10px;
+  width: 50px;
+  text-align: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.75);
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+.bathroom-field:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.75), 0 0 0 3px rgba(37, 99, 235, .25);
 }
 
 /* ===== Admin tables ===== */
@@ -361,6 +242,60 @@ panel {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-.table-wrap table {
-  min-width: 880px;
+.table-wrap table { min-width: 880px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 8px;
+    background-size: 200px auto;
+    min-height: 100dvh;
+    /* removed body flex-centering to prevent odd layout on phones */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 95%;
+    margin: clamp(12px, 3vh, 24px) auto;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.12);
+  }
+
+  .two { grid-template-columns: 1fr; gap: 10px; }
+
+  input[type="text"],
+  input[type="date"],
+  textarea,
+  select {
+    font-size: 16px;
+    padding: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.35);  /* lighter on mobile */
+  }
+
+  button {
+    width: 100%;
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .group.compact { gap: 12px; }
+
+  .bathroom-field {
+    width: 48px;
+    font-size: 1.125rem;
+    padding: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+  }
+
+  /* Date row tweaks if used */
+  .date-row { margin: 16px 0; }
+  .date-row label { font-size: 1rem; }
+  .date-row input[type="date"] {
+    width: 140px;
+    font-size: 1.1rem;
+    padding: 6px 10px;
+    text-align: center;
+  }
 }
