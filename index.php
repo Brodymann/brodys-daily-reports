@@ -124,12 +124,14 @@
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Auto-fill date with local timezone
-    const dateInput = document.querySelector('input[name="report_date"]');
-    if (dateInput && !dateInput.value) {
-      dateInput.valueAsDate = new Date();  // use local time
-    }
+  // Auto-fill date with local timezone
+  document.addEventListener("DOMContentLoaded", () => {
+  const dateInput = document.querySelector('input[name="report_date"]');
+  if (dateInput) {
+    // set to local date, time zeroed to avoid DST quirks
+    const now = new Date();
+    dateInput.valueAsDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  }
 
     // Applause on submit
     const form = document.querySelector("form");
