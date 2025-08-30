@@ -78,7 +78,7 @@ body {
 
 /* ===== Typography & Controls ===== */
 label {
-  display: block;                   /* critical for mobile: stack inputs */
+  display: block;                   /* ensures stacked label + control when needed */
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
@@ -98,17 +98,17 @@ textarea { margin-bottom: 20px; }
   margin-bottom: 12px;
 }
 
-/* ===== Groups (Specialists + Bathroom) ===== */
+/* ===== Groups (Specialists + Bathroom containers) ===== */
+/* Desktop/base: row with wrapping (side-by-side items) */
 .group {
   display: flex;
-  flex-direction: column;   /* stack vertically */
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 12px;
   margin-bottom: 16px;
 }
-
 .group label {
-  display: flex;
+  display: flex;                    /* keep label text + control aligned */
   align-items: center;
   gap: 8px;
   font-weight: 500;
@@ -214,7 +214,7 @@ button:active { transform: translateY(1px); }
 
 /* ===== Bathroom metrics ===== */
 .metric {
-  display: flex;   /* keep label + number box side by side */
+  display: flex;            /* label text + input inline */
   align-items: center;
   gap: 10px;
 }
@@ -265,20 +265,34 @@ button:active { transform: translateY(1px); }
 
   .two { grid-template-columns: 1fr; gap: 10px; }
 
+  /* Stack Specialists + Bathroom vertically on small screens */
+  .group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
   input[type="text"],
   input[type="date"],
   textarea,
-  select,
-  .bathroom-field {
+  select {
     font-size: 16px;
     padding: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.35);  /* lighter on mobile */
   }
 
   button {
     width: 100%;
     font-size: 18px;
     padding: 14px;
+  }
+
+  .group.compact { gap: 12px; }
+
+  .bathroom-field {
+    width: 48px;
+    font-size: 1.125rem;
+    padding: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.35);
   }
 
   /* Date row tweaks if used */
