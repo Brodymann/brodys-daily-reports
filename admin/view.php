@@ -68,7 +68,9 @@ $J = fn($k) => implode(', ', json_decode($r[$k] ?? '[]', true) ?: []);
     <div class="report-header">
       <h2>Brody's Daily Progress Report</h2>
       <div class="meta">
-        <?= !empty($r['report_date']) ? date('d-m-Y', strtotime($r['report_date'])) : '' ?>
+      <?= !empty($r['report_date']) 
+        ? date('l, jS F', strtotime($r['report_date'])) 
+        : '' ?>
       </div>
     </div>
 
